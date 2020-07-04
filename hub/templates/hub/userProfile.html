@@ -1,0 +1,13 @@
+{% include 'hub/index.html' %}
+
+<div class="container">
+    <form action="{% url 'hub:updateUserProfile' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_birthdate">Your birthday: </label><br>
+            {{ form.birthdate }}<br>
+            <small class="text-muted">Used for ninety-year calendar.</small>
+        </div>
+        <input type="submit" class="btn-light btn-sm" value="Update">
+    </form>
+</div>

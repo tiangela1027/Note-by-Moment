@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "hub/index.html" %}
+
+<body>
+    <div class="container">
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                    aria-selected="true">All</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="happy-tab" data-toggle="tab" href="#happy" role="tab" aria-controls="happy"
+                    aria-selected="false">Happy</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="sad-tab" data-toggle="tab" href="#sad" role="tab" aria-controls="sad"
+                    aria-selected="false">Sad</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="angry-tab" data-toggle="tab" href="#angry" role="tab" aria-controls="angry"
+                    aria-selected="false">Angry</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <br>
+            <div class="container">
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ percent_list.happy }}%"
+                        aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+                        {{ percent_list.happy }}</div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ percent_list.sad }}%"
+                        aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">{{ percent_list.sad }}</div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ percent_list.angry }}%"
+                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">{{ percent_list.angry }}</div>
+                </div>
+            </div>
+
+            <br>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-4">
+                    {% for stamp in page_obj %}
+                    {% if stamp.mood == "happy" %}
+                    <div class="col mb-4">
+                        <div class="card text-white bg-warning" style="max-width: 18rem;">
+                            <div class="card-header">{{ stamp.date }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ stamp.title }}</h5>
+                                <p class="card-text">{{ stamp.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% elif stamp.mood == "sad" %}
+                    <div class="col mb-4">
+                        <div class="card text-white bg-info" style="max-width: 18rem;">
+                            <div class="card-header">{{ stamp.date }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ stamp.title }}</h5>
+                                <p class="card-text">{{ stamp.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+                    <div class="col mb-4">
+                        <div class="card text-white bg-danger" style="max-width: 18rem;">
+                            <div class="card-header">{{ stamp.date }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ stamp.title }}</h5>
+                                <p class="card-text">{{ stamp.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="pagination justify-content-center">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="happy" role="tabpanel" aria-labelledby="home-tab">
+            <div class="container">
+                {% if happy %}
+                <div class="row row-cols-1 row-cols-md-4">
+                    {% for h in happy %}
+                    <div class="col mb-4">
+                        <div class="card text-white bg-warning" style="max-width: 18rem;">
+                            <div class="card-header">{{ h.date }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ h.title }}</h5>
+                                <p class="card-text">{{ h.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="tab-pane" id="sad" role="tabpanel" aria-labelledby="home-tab">
+            <div class="container">
+                {% if sad %}
+                <div class="row row-cols-1 row-cols-md-4">
+                    {% for s in sad %}
+                    <div class="col mb-4">
+                        <div class="card text-white bg-info" style="max-width: 18rem;">
+                            <div class="card-header">{{ s.date }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ s.title }}</h5>
+                                <p class="card-text">{{ s.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="tab-pane" id="angry" role="tabpanel" aria-labelledby="home-tab">
+            <div class="container">
+                {% if angry %}
+                <div class="row row-cols-1 row-cols-md-4">
+                    {% for a in angry %}
+                    <div class="col mb-4">
+                        <div class="card text-white bg-danger" style="max-width: 18rem;">
+                            <div class="card-header">{{ a.date }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ a.title }}</h5>
+                                <p class="card-text">{{ a.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

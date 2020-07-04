@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'hub/index.html' %}
+
+<body>
+    <div class="container">
+        <br>
+        <form action="{% url 'hub:submit' %}" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col">
+                    <div class="form-group">
+                        {{ form.title.error }}
+                        <label>Title.</label>
+                        <br>
+                        {{ form.title }}
+                        <small id="notesHelpBlock" class="form-text text-muted">
+                            Must be less than 25 characters.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        {{ form.mood.errors }}
+                        <label>Mood.</label>
+                        <br>
+                        {{ form.mood }}
+                        <!-- <div id="addMood">
+                            <button type="button" class="btn btn-sm btn-light">+ Add mood</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="form-group">
+                        {{ form.notes.error }}
+                        <label>Note.</label>
+                        <br>
+                        {{ form.notes }}
+                        <small id="notesHelpBlock" class="form-text text-muted">
+                            Must be less than 25 characters.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <input type="submit" class="btn btn-light btn-lg btn-block" value="+">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{% include 'user_auth/index.html' %}
+
+<div class="container w-50 d-flex align-items-center" id="login-panel">
+    {% if error_message %}
+    {{ error_message }}
+    {% endif %}
+    <br><br>
+    <div class="row">
+        <a href="{% url "user_auth:login" %}" class="btn btn-sm btm-light">Log In Again</a>
+        <a href="{% url "user_auth:register" %}" class="btn btn-sm btm-light">Register</a>
+    </div>
+</div>
