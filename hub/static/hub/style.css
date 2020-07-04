@@ -42,10 +42,9 @@
     text-align: right;
 }
 
-#calendar-header{
-    text-align: right;
-    margin: 20px;
-}
+/* #calendar-header{
+    text-align: left;
+} */
 
 .jumbotron {
     background-color: black;
@@ -61,4 +60,12 @@
 
 #motto, #user {
     color: lightseagreen;
+}
+
+#footer {
+    height: 30px;
+}
+
+#weekRange {
+    text-align: right;
 }

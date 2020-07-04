@@ -1,25 +1,24 @@
 {% include 'hub/index.html' %}
 
 <body>
-    <div class="container" id="calendar-header">
-        ninety-year calendar
-    </div>
     <div class="container">
+        <!-- <p id="calendar-header">ninety-year calendar</p> -->
+
         {% for i in years %}
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-1">
                 <p class="grid-marker">{{ i }}</p>
             </div>
 
             {% for m in weeks %}
             {% if counter < bound %}
-            <!-- <div id="box{{ forloop.counter0 }}" class="box" style="background-color: black;"></div> -->
-            <button type="button" id="box{{ forloop.counter0 }}" class="box modal-box" style="background-color: black;" data-toggle="modal" data-target="#exampleModal">
-            </button>
+            <!-- <a href="" id="box{{ forloop.counter0 }}" class="box" style="background-color: black;"></a> -->
+            <a href="{% url 'hub:week' i m %}" type="button" id="box{{ forloop.counter0 }}" class="box modal-box" style="background-color: black;">
+            </a>
             {% else %}
             <!-- <div id="box{{ forloop.counter0 }}" class="box"></div> -->
-            <button type="button" id="box{{ forloop.counter0 }}" class="box" disabled>
-            </button>
+            <div type="button" id="box{{ forloop.counter0 }}" class="box" disabled>
+            </div>
             {% endif %}
             {% endfor %}
         </div>
@@ -47,6 +46,8 @@
             </div>
         </div>
     </div>
+
+    <div class="container" id="footer"></div>
 </body>
 
 </html>

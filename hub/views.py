@@ -22,6 +22,15 @@ feelings = {
 def filterHelper(user, mood):
     return Stamp.objects.filter(user=user, mood=mood)
 
+def getNumWeeksToToday(date):
+    d2 = timezone.now().date()
+    # print(d2)
+    monday1 = (date - timedelta(days=date.weekday()))
+    # print(monday1)
+    monday2 = (d2 - timedelta(days=d2.weekday()))
+    # print(monday2)
+    return (monday2 - monday1).days / 7
+
 class Feelings():
     def getFeelings():
         return feelings
@@ -40,6 +49,44 @@ class Feelings():
                 percent_list[feeling] = percent
 
         return percent_list
+
+def getNotesForWeek(request, year, week):
+    # startWeek = 52 * (boxId - 1)
+    # endWeek = 52 * boxId
+    week = 52 * year + week
+    startDate = request.user.profile.birthdate + timedelta(weeks=week + 1)
+    endDate = request.user.profile.birthdate + timedelta(weeks=week + 2)
+
+    print(startDate)
+    print(endDate)
+
+    stamps = Stamp.objects.filter(user=request.user, date__range=(startDate, endDate))
+
+    paginator = Paginator(stamps, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    total_size = len(stamps)
+    percent_list = Feelings.getPercentages(request.user)
+
+    happy_list = filterHelper(request.user, "happy").filter(date__range=(startDate, endDate))
+    sad_list = filterHelper(request.user, "sad").filter(date__range=(startDate, endDate))
+    angry_list = filterHelper(request.user, "angry").filter(date__range=(startDate, endDate))
+
+    context_dict = {
+        'percent_list': percent_list,
+        'size': total_size,
+        'page_obj': page_obj,
+        'happy': happy_list,
+        'sad': sad_list,
+        'angry': angry_list,
+        'user': request.user,
+        'stamps': stamps,
+        'startDate': startDate,
+        'endDate': endDate
+    }
+
+    return render(request, 'hub/week.html', context_dict)
 
 @login_required
 def viewCollections(request):
@@ -100,6 +147,7 @@ def addStamp(request):
     
     return render(request, 'hub/addstamp.html', context_dict)
 
+@login_required
 def userProfile(request):
     form = UpdateUserProfile()
     total_size = len(Stamp.objects.filter(user=request.user))
@@ -127,16 +175,16 @@ def updateUserProfile(request):
 
     return HttpResponseRedirect(reverse('hub:home'))
 
-def getNumWeeksToToday(date):
-    d2 = timezone.now().date()
-    monday1 = (date - timedelta(days=date.weekday()))
-    monday2 = (d2 - timedelta(days=d2.weekday()))
-    return (monday2 - monday1).days / 7
-
 @login_required
 def calendar(request):
     total_size = len(Stamp.objects.filter(user=request.user))
-    getNumWeeks = getNumWeeksToToday(request.user.profile.birthdate)
+
+    try:
+        getNumWeeks = getNumWeeksToToday(request.user.profile.birthdate)
+        # print(getNumWeeks)
+    except Profile.DoesNotExist:
+        getNumWeeks = 0
+     
     context_dict = {
         'size': total_size,
         'years': range(90),

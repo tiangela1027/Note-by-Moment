@@ -23,6 +23,10 @@
                     aria-selected="false">Angry</a>
             </li>
         </ul>
+
+        {% if startDate and endDate %}
+        <div class="container" id="weekRange">{{ startDate }} - {{ endDate }}</div>
+        {% endif %}
     </div>
 
     <div class="tab-content">

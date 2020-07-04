@@ -9,5 +9,6 @@ urlpatterns = [
     path('calendar/', views.calendar, name="calendar"),
     path('updateCalendar/', views.updateCalendar, name="updateCalendar"),
     path('userProfile/', views.userProfile, name="user"),
-    path('updateUser/', views.updateUserProfile, name="updateUserProfile")
+    path('updateUser/', views.updateUserProfile, name="updateUserProfile"),
+    path('week/<int:year>/<int:week>', views.getNotesForWeek, name="week"),
 ]
