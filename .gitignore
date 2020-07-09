@@ -74,6 +74,9 @@ coverage.xml
 # celery 
 celerybeat-schedule.* 
 
+# White Noise
+staticfiles
+
 # SageMath parsed files 
 *.sage.py 
 
