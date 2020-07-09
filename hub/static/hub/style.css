@@ -20,6 +20,10 @@
     margin: 5px 0;
 }
 
+#container {
+    text-align: center;
+}
+
 #headerTop {
     flex-direction: column;
 }
@@ -32,7 +36,7 @@
     margin: 1px;
 }
 
-.modal-box:hover {
+.box:hover {
     border: 2px solid turquoise;
 }
 
@@ -42,12 +46,20 @@
     text-align: right;
 }
 
-/* #calendar-header{
-    text-align: left;
-} */
+a {
+    color: lightseagreen;
+}
+
+a:active, a:visited {
+    color: teal;
+}
 
 .jumbotron {
     background-color: black;
+}
+
+#title {
+    font-family: 'Lobster', cursive;
 }
 
 #stamped {
@@ -56,6 +68,11 @@
 
 #stamped:hover {
     background-color: teal;
+}
+
+#noted {
+    margin: 5px;
+    font-family: 'Lobster', cursive;
 }
 
 #motto, #user {
@@ -68,4 +85,12 @@
 
 #weekRange {
     text-align: right;
+}
+
+.months {
+    width: 5%;
+}
+
+.card-title {
+    font-family: 'Lobster', cursive;
 }

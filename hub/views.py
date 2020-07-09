@@ -24,12 +24,9 @@ def filterHelper(user, mood):
 
 def getNumWeeksToToday(date):
     d2 = timezone.now().date()
-    # print(d2)
     monday1 = (date - timedelta(days=date.weekday()))
-    # print(monday1)
     monday2 = (d2 - timedelta(days=d2.weekday()))
-    # print(monday2)
-    return (monday2 - monday1).days / 7
+    return (monday2 - monday1).days / 7 - 1
 
 class Feelings():
     def getFeelings():
@@ -38,27 +35,25 @@ class Feelings():
     def addFeeling(feeling):
         feelings[feeling.upper()] = feeling.lower()
 
-    def getPercentages(user):
+    def getPercentages(user, lst):
         percent_list = dict()
-        total_size = len(Stamp.objects.filter(user=user))
+        total_size = len(lst)
 
         if total_size != 0:
             for feeling in feelings.values():
-                size = len(filterHelper(user, feeling))
+                size = len(lst.filter(user=user, mood=feeling))
+                print(size)
                 percent = round(size / total_size * 100)
+                print(total_size)
+                print(percent)
                 percent_list[feeling] = percent
 
         return percent_list
 
 def getNotesForWeek(request, year, week):
-    # startWeek = 52 * (boxId - 1)
-    # endWeek = 52 * boxId
-    week = 52 * year + week
-    startDate = request.user.profile.birthdate + timedelta(weeks=week + 1)
-    endDate = request.user.profile.birthdate + timedelta(weeks=week + 2)
-
-    print(startDate)
-    print(endDate)
+    week = 52 * year + week + 1
+    startDate = request.user.profile.birthdate + timedelta(weeks=week)
+    endDate = request.user.profile.birthdate + timedelta(weeks=week + 1)
 
     stamps = Stamp.objects.filter(user=request.user, date__range=(startDate, endDate))
 
@@ -67,7 +62,7 @@ def getNotesForWeek(request, year, week):
     page_obj = paginator.get_page(page_number)
 
     total_size = len(stamps)
-    percent_list = Feelings.getPercentages(request.user)
+    percent_list = Feelings.getPercentages(request.user, stamps)
 
     happy_list = filterHelper(request.user, "happy").filter(date__range=(startDate, endDate))
     sad_list = filterHelper(request.user, "sad").filter(date__range=(startDate, endDate))
@@ -96,7 +91,10 @@ def viewCollections(request):
     page_obj = paginator.get_page(page_number)
 
     total_size = len(stamps)
-    percent_list = Feelings.getPercentages(request.user)
+    percent_list = Feelings.getPercentages(
+        request.user, 
+        Stamp.objects.filter(user=request.user)
+    )
 
     happy_list = filterHelper(request.user, "happy")
     sad_list = filterHelper(request.user, "sad")
@@ -181,7 +179,6 @@ def calendar(request):
 
     try:
         getNumWeeks = getNumWeeksToToday(request.user.profile.birthdate)
-        # print(getNumWeeks)
     except Profile.DoesNotExist:
         getNumWeeks = 0
      
@@ -189,6 +186,7 @@ def calendar(request):
         'size': total_size,
         'years': range(90),
         'weeks': range(52),
+        'months': range(1, 13),
         'bound': getNumWeeks,
         'counter': partial(next, count()),
         'user': request.user

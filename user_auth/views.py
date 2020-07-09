@@ -23,7 +23,7 @@ def register(request):
     return render(request, 'user_auth/register.html', {'form': form})
 
 
-def registerNewUser(request):
+def registerUser(request):
     if request.method == "POST":
         form = RegisterNewUser(request.POST)
 
@@ -32,7 +32,7 @@ def registerNewUser(request):
             password = form.cleaned_data.get('password')
 
             try:
-                user = get_object_or_404(User, username=username)
+                user = User.objects.get(username=username)
             except (KeyError, User.DoesNotExist):
                 user = User.objects.create_user(
                     username=username,
