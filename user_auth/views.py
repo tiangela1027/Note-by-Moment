@@ -39,6 +39,7 @@ def registerUser(request):
                     password=password,
                 )
                 user.save()
+                login(request, user)
                 return HttpResponseRedirect(reverse('hub:home'))
             else:
                 return render(request, 'user_auth/error.html', {
