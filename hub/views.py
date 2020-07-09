@@ -30,7 +30,7 @@ quotes = [
     'Dream as if you’ll live forever, live as if you’ll die today. (James Dean)',
     'To live will be an awfully big adventure. (Peter Pan)',
     'Try to be a rainbow in someone’s cloud. (Maya Angelou)',
-    'What consumes your mind controls your life',
+    'What consumes your mind controls your life.',
     'The meaning of life is to give life meaning. (Ken Hudgins)'
 ]
 
@@ -38,13 +38,13 @@ def filterHelper(user, mood):
     return Stamp.objects.filter(user=user, mood=mood)
 
 def generateRandomQuote():
-    return quotes[randint(0, 10)]
+    return quotes[randint(0, 9)]
 
 def getNumWeeksToToday(date):
     d2 = timezone.now().date()
     monday1 = (date - timedelta(days=date.weekday()))
     monday2 = (d2 - timedelta(days=d2.weekday()))
-    return (monday2 - monday1).days / 7 - 1
+    return (monday2 - monday1).days / 7
 
 class Feelings():
     def getFeelings():

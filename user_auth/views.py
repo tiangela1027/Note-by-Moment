@@ -56,6 +56,13 @@ def authUser(request):
             login(request, user)
             return HttpResponseRedirect(reverse('hub:home'))
         else:
-            return render(request, "user_auth/error.html", {
-                'error_message': "The username / password is incorrect.",
-            })
+            try:
+                user = User.objects.get(username=username)
+            except (KeyError, User.DoesNotExist):
+                return render(request, "user_auth/error.html", {
+                    'error_message': "The username does not exist.",
+                })
+            else:
+                return render(request, "user_auth/error.html", {
+                    'error_message': "The username / password is incorrect.",
+                })

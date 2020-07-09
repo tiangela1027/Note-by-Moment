@@ -34,12 +34,12 @@
             <br>
             <div class="container">
                 <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ percent_list.happy }}%"
+                    <div class="progress-bar bg-yellow" role="progressbar" style="width: {{ percent_list.happy }}%"
                         aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
                         {{ percent_list.happy }}</div>
-                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ percent_list.sad }}%"
+                    <div class="progress-bar bg-blue" role="progressbar" style="width: {{ percent_list.sad }}%"
                         aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">{{ percent_list.sad }}</div>
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ percent_list.angry }}%"
+                    <div class="progress-bar bg-red" role="progressbar" style="width: {{ percent_list.angry }}%"
                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">{{ percent_list.angry }}</div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     {% for stamp in page_obj %}
                     {% if stamp.mood == "happy" %}
                     <div class="col mb-4">
-                        <div class="card text-white bg-warning" style="max-width: 18rem;">
+                        <div class="card text-black bg-yellow" style="max-width: 18rem;">
                             <div class="card-header">{{ stamp.date }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ stamp.title }}</h5>
@@ -61,7 +61,7 @@
 
                     {% elif stamp.mood == "sad" %}
                     <div class="col mb-4">
-                        <div class="card text-white bg-info" style="max-width: 18rem;">
+                        <div class="card text-black bg-blue" style="max-width: 18rem;">
                             <div class="card-header">{{ stamp.date }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ stamp.title }}</h5>
@@ -72,7 +72,7 @@
 
                     {% else %}
                     <div class="col mb-4">
-                        <div class="card text-white bg-danger" style="max-width: 18rem;">
+                        <div class="card text-black bg-red" style="max-width: 18rem;">
                             <div class="card-header">{{ stamp.date }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ stamp.title }}</h5>
@@ -115,7 +115,7 @@
                 <div class="row row-cols-1 row-cols-md-4">
                     {% for h in happy %}
                     <div class="col mb-4">
-                        <div class="card text-white bg-warning" style="max-width: 18rem;">
+                        <div class="card text-black bg-yellow" style="max-width: 18rem;">
                             <div class="card-header">{{ h.date }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ h.title }}</h5>
@@ -135,7 +135,7 @@
                 <div class="row row-cols-1 row-cols-md-4">
                     {% for s in sad %}
                     <div class="col mb-4">
-                        <div class="card text-white bg-info" style="max-width: 18rem;">
+                        <div class="card text-black bg-blue" style="max-width: 18rem;">
                             <div class="card-header">{{ s.date }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ s.title }}</h5>
@@ -155,7 +155,7 @@
                 <div class="row row-cols-1 row-cols-md-4">
                     {% for a in angry %}
                     <div class="col mb-4">
-                        <div class="card text-white bg-danger" style="max-width: 18rem;">
+                        <div class="card text-black bg-red" style="max-width: 18rem;">
                             <div class="card-header">{{ a.date }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ a.title }}</h5>

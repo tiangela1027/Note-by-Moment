@@ -3,13 +3,13 @@
 {% include 'hub/index.html' %}
 
 <body>
-    <div class="container">
+    <div class="container d-flex justify-content-center w-75">
         <br>
-        <form action="{% url 'hub:submit' %}" method="post">
+        <form action="{% url 'hub:submit' %}" method="post" class="w-50">
             {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col">
-                    <div class="form-group">
+            <!-- <div class="form-row"> -->
+                <div class="form-group col justify-content-center">
+                    <div class="form-group align-items-center">
                         {{ form.title.error }}
                         <label>Title.</label>
                         <br>
@@ -27,8 +27,6 @@
                             <button type="button" class="btn btn-sm btn-light">+ Add mood</button>
                         </div> -->
                     </div>
-                </div>
-                <div class="form-group col">
                     <div class="form-group">
                         {{ form.notes.error }}
                         <label>Note.</label>
@@ -39,9 +37,12 @@
                         </small>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <input type="submit" class="btn btn-light btn-lg btn-block" value="+">
+                <div class="form-group col">
+                    
+                </div>
+            <!-- </div> -->
+            <div class="form-row justify-content-center">
+                <input type="submit" class="btn btn-light w-50" value="+ Note">
             </div>
         </form>
     </div>
