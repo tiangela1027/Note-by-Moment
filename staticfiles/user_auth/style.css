@@ -1,0 +1,10 @@
+h1 {
+    color: lightseagreen;
+    font-size: 5em;
+    margin-top: 5%;
+    font-family: 'Galada', cursive;
+}
+
+#login-panel {
+    flex-direction: column;
+}

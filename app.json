@@ -1,0 +1,22 @@
+{
+    "name": "Note by Moment",
+    "description": "Note your life with the small moments.",
+    "image": "heroku/python",
+    "repository": "https://github.com/tiangela1027/Noted",
+    "keywords": ["python", "django" ],
+    "addons": [ "" ],
+    "env": {
+      "SECRET_KEY": {
+        "description": "The secret key for the Django application.",
+        "generator": "secret"
+      }
+    },
+    "environments": {
+      "test": {
+        "scripts": {
+          "test-setup": "python manage.py collectstatic --noinput",
+          "test": "python manage.py test"
+        }
+      }
+    }
+  }
