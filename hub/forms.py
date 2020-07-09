@@ -13,7 +13,7 @@ class SubmitStamp(forms.Form):
     ]
 
     mood = forms.ChoiceField(choices=DEFAULT_MOODS)
-    notes = forms.CharField(max_length=25, widget=forms.Textarea)
+    notes = forms.CharField(max_length=250, widget=forms.Textarea)
     title = forms.CharField(max_length=25)
 
 class UpdateUserProfile(forms.Form):

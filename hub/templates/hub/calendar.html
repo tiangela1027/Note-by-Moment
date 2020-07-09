@@ -1,6 +1,17 @@
 {% include 'hub/index.html' %}
 
 <body>
+    <div class="container w-75 justify-content-left">
+        <div class="row justify-content-left"><h1>ninety-year calendar</h1></div>
+        <div class="row justify-content-left">
+            <p class="text-muted">
+                Each year starts on your birthday. Click on a box to see your notes for that week.  
+            </p>
+        </div>
+    </div>
+
+    <div class="container" id="footer"></div>
+
     <div class="container w-75" id="container">
         <!-- <p id="calendar-header">ninety-year calendar</p> -->
         {% if bound == 0 %}

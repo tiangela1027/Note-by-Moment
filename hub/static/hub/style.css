@@ -73,10 +73,15 @@ a:active, a:visited {
 #noted {
     margin: 5px;
     font-family: 'Lobster', cursive;
+    color: white;
 }
 
 #motto, #user {
     color: lightseagreen;
+}
+
+#motto {
+    font-size: small;
 }
 
 #footer {

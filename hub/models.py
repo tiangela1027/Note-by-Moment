@@ -10,7 +10,7 @@ class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     mood = models.CharField(max_length=10)
-    notes = models.CharField(max_length=25)
+    notes = models.CharField(max_length=250)
     title = models.CharField(max_length=25, default=mood)
     date = models.DateTimeField(default=timezone.now)
 

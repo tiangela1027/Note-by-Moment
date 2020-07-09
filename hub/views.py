@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from itertools import count
 from functools import partial
 from datetime import datetime, timedelta
+from random import randint
 
 from .models import Stamp, Profile
 from .forms import SubmitStamp, UpdateUserProfile
@@ -19,8 +20,25 @@ feelings = {
     'ANGRY': 'angry',
 }
 
+# taken from https://www.codeofliving.com/blog/55-powerful-short-quotes-sayings-life/
+quotes = [
+    'Every moment is a fresh beginning. (T.S. Eliot)',
+    'Never regret anything that made you smile. (Mark Twain)',
+    'Die with memories, not dreams.',
+    'What we think, we become. (Buddha)',
+    'Be so good they can’t ignore you. (Steve Martin)',
+    'Dream as if you’ll live forever, live as if you’ll die today. (James Dean)',
+    'To live will be an awfully big adventure. (Peter Pan)',
+    'Try to be a rainbow in someone’s cloud. (Maya Angelou)',
+    'What consumes your mind controls your life',
+    'The meaning of life is to give life meaning. (Ken Hudgins)'
+]
+
 def filterHelper(user, mood):
     return Stamp.objects.filter(user=user, mood=mood)
+
+def generateRandomQuote():
+    return quotes[randint(0, 10)]
 
 def getNumWeeksToToday(date):
     d2 = timezone.now().date()
@@ -42,10 +60,7 @@ class Feelings():
         if total_size != 0:
             for feeling in feelings.values():
                 size = len(lst.filter(user=user, mood=feeling))
-                print(size)
                 percent = round(size / total_size * 100)
-                print(total_size)
-                print(percent)
                 percent_list[feeling] = percent
 
         return percent_list
@@ -55,7 +70,7 @@ def getNotesForWeek(request, year, week):
     startDate = request.user.profile.birthdate + timedelta(weeks=week)
     endDate = request.user.profile.birthdate + timedelta(weeks=week + 1)
 
-    stamps = Stamp.objects.filter(user=request.user, date__range=(startDate, endDate))
+    stamps = Stamp.objects.filter(user=request.user, date__range=(startDate, endDate)).order_by('-date')
 
     paginator = Paginator(stamps, 8)
     page_number = request.GET.get('page')
@@ -64,9 +79,9 @@ def getNotesForWeek(request, year, week):
     total_size = len(stamps)
     percent_list = Feelings.getPercentages(request.user, stamps)
 
-    happy_list = filterHelper(request.user, "happy").filter(date__range=(startDate, endDate))
-    sad_list = filterHelper(request.user, "sad").filter(date__range=(startDate, endDate))
-    angry_list = filterHelper(request.user, "angry").filter(date__range=(startDate, endDate))
+    happy_list = filterHelper(request.user, "happy").filter(date__range=(startDate, endDate)).order_by('-date')
+    sad_list = filterHelper(request.user, "sad").filter(date__range=(startDate, endDate)).order_by('-date')
+    angry_list = filterHelper(request.user, "angry").filter(date__range=(startDate, endDate)).order_by('-date')
 
     context_dict = {
         'percent_list': percent_list,
@@ -78,14 +93,15 @@ def getNotesForWeek(request, year, week):
         'user': request.user,
         'stamps': stamps,
         'startDate': startDate,
-        'endDate': endDate
+        'endDate': endDate,
+        'quote': generateRandomQuote(),
     }
 
     return render(request, 'hub/week.html', context_dict)
 
 @login_required
 def viewCollections(request):
-    stamps = Stamp.objects.filter(user=request.user)
+    stamps = Stamp.objects.filter(user=request.user).order_by('-date')
     paginator = Paginator(stamps, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -96,9 +112,9 @@ def viewCollections(request):
         Stamp.objects.filter(user=request.user)
     )
 
-    happy_list = filterHelper(request.user, "happy")
-    sad_list = filterHelper(request.user, "sad")
-    angry_list = filterHelper(request.user, "angry")
+    happy_list = filterHelper(request.user, "happy").order_by('-date')
+    sad_list = filterHelper(request.user, "sad").order_by('-date')
+    angry_list = filterHelper(request.user, "angry").order_by('-date')
 
     context_dict = {
         'percent_list': percent_list,
@@ -108,6 +124,7 @@ def viewCollections(request):
         'sad': sad_list,
         'angry': angry_list,
         'user': request.user,
+        'quote': generateRandomQuote(),
     }
 
     return render(request, 'hub/collections.html', context=context_dict)
@@ -141,6 +158,7 @@ def addStamp(request):
         'form': form,
         'size': total_size,
         'user': request.user,
+        'quote': generateRandomQuote(),
     }
     
     return render(request, 'hub/addstamp.html', context_dict)
@@ -154,6 +172,7 @@ def userProfile(request):
         'form': form,
         'size': total_size,
         'user': request.user,
+        'quote': generateRandomQuote(),
     }
 
     return render(request, 'hub/userProfile.html', context_dict)
@@ -189,7 +208,8 @@ def calendar(request):
         'months': range(1, 13),
         'bound': getNumWeeks,
         'counter': partial(next, count()),
-        'user': request.user
+        'user': request.user,
+        'quote': generateRandomQuote(),
     }
     return render(request, 'hub/calendar.html', context_dict)
 
