@@ -190,7 +190,7 @@ def updateUserProfile(request):
             request.user.profile = profile
             request.user.save()
 
-    return HttpResponseRedirect(reverse('hub:home'))
+    return HttpResponseRedirect(reverse('hub:calendar'))
 
 @login_required
 def calendar(request):

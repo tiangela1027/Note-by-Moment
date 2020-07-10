@@ -5,11 +5,13 @@
 
     <div class="container w-75" id="container">
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="about">
-            Calendar
+            Life Calendar
           </button>
 
+        <br>
+
         {% if bound == 0 %}
-        <small class="text-muted" id="hint">Set your birthday in your <a href="{% url 'hub:user' %}">profile</a> to use the calendar.</small>
+        <p id="hint">Set your birthday in your <a href="{% url 'hub:user' %}">profile</a> to use the calendar.</p>
         {% endif %}
 
         {% for i in years %}
@@ -42,7 +44,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">90-Year Calendar</h5>
+              <h5 class="modal-title" id="exampleModalLabel">90-Year Life Calendar</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

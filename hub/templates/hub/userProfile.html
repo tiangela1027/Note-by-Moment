@@ -2,7 +2,7 @@
 
 <div class="container d-flex justify-content-center w-75">
     <br>
-    <form action="{% url 'hub:submit' %}" method="post" class="w-50">
+    <form action="{% url 'hub:updateUserProfile' %}" method="post" class="w-50">
         {% csrf_token %}
         <div class="form-group">
             <label for="id_birthdate">Birthday: </label><br>
