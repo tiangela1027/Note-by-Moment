@@ -147,7 +147,7 @@ def submitStamp(request):
         else:
             form = SubmitStamp()
 
-    return HttpResponseRedirect(reverse('hub:add'))
+    return HttpResponseRedirect(reverse('hub:home'))
 
 @login_required
 def addStamp(request):

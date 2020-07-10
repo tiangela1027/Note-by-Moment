@@ -28,6 +28,11 @@ body {
     opacity: 0.5;
 }
 
+label {
+    font-size: large;
+    font-weight: bold;
+}
+
 .nav-pills .nav-link.active {
     background-color: rgb(0, 0, 0);
 }
@@ -50,19 +55,19 @@ body {
 }
 
 .box {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     /* background-color: black; */
     border: 2px solid black;
     margin: 1px;
 }
 
 .box:hover {
-    border: 5px solid white;
+    border: 2px solid white;
 }
 
 .grid-marker {
-    font-size: 10px;
+    font-size: 15px;
     margin: 0;
     text-align: right;
 }
@@ -73,6 +78,10 @@ a {
 
 a:active, a:visited {
     color: teal;
+}
+
+#tabs {
+    margin-bottom: 20px;
 }
 
 .jumbotron {
@@ -95,6 +104,20 @@ a:active, a:visited {
     margin: 5px;
     font-family: 'Lobster', cursive;
     color: black;
+}
+
+#about, .btn {
+    color: white;
+    background-color: black;
+    border: none;
+}
+
+#about:hover {
+    background-color: rgb(64, 75, 71);
+}
+
+#about {
+    margin-bottom: 30px;
 }
 
 select {

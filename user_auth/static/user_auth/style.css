@@ -18,11 +18,15 @@ body {
 }
 
 .btn-light {
-    background-color: palegreen;
+    background-color: rgb(169, 236, 169);
     border: 2px solid black;
 }
 
 .btn-light:hover {
     background-color: lightsalmon;
     border: 2px solid black;
+}
+
+#buttons {
+    margin: 30px auto;
 }

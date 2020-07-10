@@ -1,19 +1,13 @@
 {% include 'hub/index.html' %}
 
 <body>
-    <div class="container w-50 justify-content-left">
-        <div class="row justify-content-left"><h1>ninety-year calendar</h1></div>
-        <div class="row justify-content-left">
-            <p class="text-muted">
-                Each year starts on your birthday. Click on a box to see your notes for that week.  
-            </p>
-        </div>
-    </div>
-
     <div class="container" id="footer"></div>
 
     <div class="container w-75" id="container">
-        <!-- <p id="calendar-header">ninety-year calendar</p> -->
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="about">
+            Calendar
+          </button>
+
         {% if bound == 0 %}
         <small class="text-muted" id="hint">Set your birthday in your <a href="{% url 'hub:user' %}">profile</a> to use the calendar.</small>
         {% endif %}
@@ -42,6 +36,27 @@
         </div>
         {% endfor %}
     </div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">90-Year Calendar</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                Each year of the calendar begins with your birthday; each box is a week in your life. <br>
+                Click on a marked box to see your notes during that week.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div class="container" id="footer"></div>
 </body>
