@@ -55,8 +55,8 @@ label {
 }
 
 .box {
-    width: 15px;
-    height: 15px;
+    width: 1%;
+    height: 20px;
     /* background-color: black; */
     border: 2px solid black;
     margin: 1px;
