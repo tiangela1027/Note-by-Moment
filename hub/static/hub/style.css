@@ -1,153 +1,170 @@
 body {
-    background: url('/static/hub/Honey Dew.jpg') 100% no-repeat fixed;
+  position: relative;
+  min-height: 100vh;
+  background: url("/static/hub/Honey Dew.jpg") 100% no-repeat fixed;
+}
+
+.content-wrap {
+  padding-bottom: 3rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .nav-pills .nav-link {
-    margin: 10px 3px;
+  margin: 10px 3px;
 }
 
 .bg-yellow {
-    background-color: lightgoldenrodyellow;
+  background-color: lightgoldenrodyellow;
 }
 
 .bg-blue {
-    background-color: turquoise;
+  background-color: turquoise;
 }
 
 .bg-red {
-    background-color: lightsalmon;
+  background-color: lightsalmon;
 }
 
 .progress-bar {
-    color: black;
+  color: black;
 }
 
 .nav-pills .nav-link:not(.active) {
-    color: white;
-    background-color: rgb(11, 15, 15);
-    opacity: 0.5;
+  color: white;
+  background-color: rgb(11, 15, 15);
+  opacity: 0.5;
 }
 
 label {
-    font-size: large;
-    font-weight: bold;
+  font-size: large;
+  font-weight: bold;
 }
 
 .nav-pills .nav-link.active {
-    background-color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
 }
 
-#id_title, #id_mood, #id_notes {
-    flex-direction: column;
-    width: 100%;
+#id_title,
+#id_mood,
+#id_notes {
+  flex-direction: column;
+  width: 100%;
 }
 
 #addMood {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 #container {
-    text-align: center;
+  text-align: center;
 }
 
 #headerTop {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .box {
-    width: 1%;
-    height: 20px;
-    /* background-color: black; */
-    border: 2px solid black;
-    margin: 1px;
+  width: 1%;
+  height: 20px;
+  /* background-color: black; */
+  border: 2px solid black;
+  margin: 1px;
 }
 
 .box:hover {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 .grid-marker {
-    font-size: 15px;
-    margin: 0;
-    text-align: right;
+  font-size: 15px;
+  margin: 0;
+  text-align: right;
 }
 
 a {
-    color: lightseagreen;
+  color: lightseagreen;
 }
 
-a:active, a:visited {
-    color: teal;
+a:active,
+a:visited {
+  color: teal;
 }
 
 #tabs {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .jumbotron {
-    background-color: black;
+  background-color: black;
 }
 
 #title {
-    font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
 }
 
 #stamped {
-    background-color: palegoldenrod;
+  background-color: palegoldenrod;
 }
 
 #stamped:hover {
-    background-color: rgb(71, 209, 195);
+  background-color: rgb(71, 209, 195);
 }
 
 #noted {
-    margin: 5px;
-    font-family: 'Lobster', cursive;
-    color: black;
+  margin: 5px;
+  font-family: "Lobster", cursive;
+  color: black;
 }
 
-#about, .btn {
-    color: white;
-    background-color: black;
-    border: none;
+#about,
+.btn {
+  color: white;
+  background-color: black;
+  border: none;
 }
 
 #about:hover {
-    background-color: rgb(64, 75, 71);
+  background-color: rgb(64, 75, 71);
 }
 
 #about {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 select {
-    margin: 0 3px;
+  margin: 0 3px;
 }
 
 .progress {
-    background-color: black;
+  background-color: black;
 }
 
-#motto, #user {
-    color: lightseagreen;
+#motto,
+#user {
+  color: lightseagreen;
 }
 
 #motto {
-    font-size: large;
+  font-size: large;
 }
 
 #footer {
-    height: 30px;
+  height: 30px;
 }
 
 #weekRange {
-    text-align: right;
+  text-align: right;
 }
 
 .months {
-    width: 5%;
+  width: 5%;
 }
 
 .card-title {
-    font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
 }

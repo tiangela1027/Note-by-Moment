@@ -1,32 +1,42 @@
 h1 {
-    font-size: 5em;
-    margin-top: 25%;
-    font-family: 'Galada', cursive;
-    opacity: 75%;
+  font-size: 5em;
+  margin-top: 25%;
+  font-family: "Galada", cursive;
+  opacity: 75%;
 }
 
-#id_username, #id_password {
-    border-radius: 5px;
+#id_username,
+#id_password {
+  border-radius: 5px;
 }
 
-#login-panel, #register-panel {
-    flex-direction: column;
+#login-panel,
+#register-panel {
+  flex-direction: column;
 }
 
 body {
-    background: url("/static/user_auth/MegaTron.jpg") 100% no-repeat fixed;
+  position: relative;
+  min-height: 100vh;
+  background: url("/static/user_auth/MegaTron.jpg") 100% no-repeat fixed;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .btn-light {
-    background-color: rgb(169, 236, 169);
-    border: 2px solid black;
+  background-color: rgb(169, 236, 169);
+  border: 2px solid black;
 }
 
 .btn-light:hover {
-    background-color: lightsalmon;
-    border: 2px solid black;
+  background-color: lightsalmon;
+  border: 2px solid black;
 }
 
 #buttons {
-    margin: 30px auto;
+  margin: 30px auto;
 }
